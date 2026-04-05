@@ -39,7 +39,7 @@ The skill checks for broken links, missing index entries, stale cross-references
 
 ## How It Works
 
-Inspired by [Karpathy's LLM Wiki idea](https://gist.github.com/karpathy/1dd0294ef9567971c1e4348a90d69285):
+Inspired by [Karpathy's LLM Wiki idea](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f):
 
 > "The LLM writes and maintains the wiki; the human reads and asks questions."
 
@@ -80,7 +80,7 @@ This skill follows the [agentskills.io](https://agentskills.io) open standard. I
 
 ## Inspired By
 
-This is an unofficial community implementation of the LLM Wiki workflow described in [Karpathy's idea file](https://gist.github.com/karpathy/1dd0294ef9567971c1e4348a90d69285) (April 2026). The core value is a battle-tested set of compilation principles and workflow templates, not the code itself.
+This is an unofficial community implementation of the LLM Wiki workflow described in [Karpathy's idea file](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (April 2026). The core value is a battle-tested set of compilation principles and workflow templates, not the code itself.
 
 ## License
 
