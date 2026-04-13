@@ -1,6 +1,6 @@
 # karpathy-llm-wiki
 
-**LLM Wiki skill for building a Karpathy-style personal knowledge base with Claude Code, Cursor, Codex, and other Agent Skills tools**
+**A reusable skill for building Karpathy-style LLM wikis with Claude Code, Cursor, Codex, and other Agent Skills tools.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/Astro-Han/karpathy-llm-wiki?style=social)](https://github.com/Astro-Han/karpathy-llm-wiki)
@@ -12,55 +12,40 @@
   <img src="assets/karpathy-tweet.png" alt="Karpathy's tweet about LLM Wiki" width="560">
 </p>
 
-`karpathy-llm-wiki` is an Agent Skills-compatible `SKILL.md` package for building a markdown-first LLM wiki. It helps coding agents ingest source material into `raw/`, compile durable knowledge pages into `wiki/`, answer questions with citations, and lint the wiki for consistency. If you are looking for an LLM wiki, a Karpathy wiki workflow, a personal knowledge base for coding agents, or a RAG alternative based on compiled markdown, this repository is built for that use case.
-
-## Key Takeaways
-
-- **Direct answer**: this repo packages Karpathy's LLM Wiki workflow into one reusable skill
-- **Three operations**: Ingest sources, Query your wiki with citations, Lint for consistency
-- **Cross-tool support**: works with Claude Code, Cursor, Codex CLI, OpenCode, and other Agent Skills tools
-- **Real usage proof**: based on a production knowledge base with 94 articles, 99 sources, and daily use since April 2026
+`karpathy-llm-wiki` packages [Karpathy's LLM Wiki idea](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) into one installable [Agent Skills](https://agentskills.io) skill. Your coding agent ingests sources into `raw/`, compiles durable knowledge pages into `wiki/`, answers questions with citations, and lints the wiki for consistency.
 
 ## What Is an LLM Wiki?
 
-An **LLM wiki** is a knowledge system where the LLM maintains a structured wiki instead of re-searching raw documents from scratch on every question. New sources are compiled into durable markdown pages, cross-references are updated over time, and answers cite the wiki pages that already contain the synthesized knowledge.
+An **LLM wiki** is a knowledge system where the LLM maintains structured wiki pages instead of re-searching raw documents on every question. New sources are compiled into durable markdown pages, cross-references are updated over time, and answers cite the wiki pages that already contain the synthesized knowledge.
 
-This repository turns that idea into a reusable skill:
+This skill gives you three operations:
 
 | Operation | What it does | Output |
 |-----------|--------------|--------|
 | **Ingest** | Collects a source into `raw/` and compiles it into the wiki | New or updated wiki pages |
-| **Query** | Searches the wiki and answers with citations | Grounded answers that link back to markdown pages |
+| **Query** | Searches the wiki and answers with citations | Grounded answers linking to markdown pages |
 | **Lint** | Checks index integrity, links, and wiki health | Auto-fixes plus reported issues |
 
-See [SKILL.md](SKILL.md) for the full skill behavior and [docs/SPEC.md](docs/SPEC.md) for the design rationale.
+See [SKILL.md](SKILL.md) for the full skill specification.
 
 ## LLM Wiki vs RAG
-
-People often search for **LLM wiki vs RAG**, **personal knowledge base for agents**, or **markdown knowledge base**. The difference is simple:
 
 | Approach | Knowledge lives in | When synthesis happens | Good for |
 |----------|--------------------|------------------------|----------|
 | **RAG** | Raw chunks and embeddings | At query time | Broad retrieval across large corpora |
-| **LLM Wiki** | Curated markdown pages | During ingest and maintenance | Compounding knowledge, summaries, comparisons, and durable cross-links |
+| **LLM Wiki** | Curated markdown pages | During ingest and maintenance | Compounding knowledge, summaries, and durable cross-links |
 
-`karpathy-llm-wiki` is optimized for the second model. It is most useful when you want a knowledge base that improves over time instead of re-deriving the same relationships on every query.
+This skill is optimized for the wiki model: knowledge that improves over time instead of re-deriving relationships on every query.
 
-## Proof From Real Usage
+## Usage Stats
 
-This skill is based on a production knowledge base that has been maintained daily since April 2026:
+Based on a production knowledge base maintained daily since April 2026:
 
-| Metric | Count | Detail |
-|--------|-------|--------|
-| Wiki articles | **94** | Grew from 48 to 94 |
-| Source materials | **99** | Started from 0 |
-| Topic directories | **13** | Grew from 8 to 13 |
-| Operation log entries | **87** | Recorded in the wiki log |
-| Recent 7-day activity | **87 entries** | Active ongoing maintenance |
+- **94** wiki articles across **13** topic directories
+- **99** source materials ingested
+- **87** operation log entries in the last 7 days
 
-Top topics include **ai-coding-tools** with 29 articles, **ai-research** with 24 articles, and **product-design-frameworks** with 8 articles.
-
-See [examples/](examples/) for example wiki pages, source files, and operation logs.
+See [examples/](examples/) for sample wiki pages, source files, and operation logs.
 
 ## Install
 
@@ -68,7 +53,7 @@ See [examples/](examples/) for example wiki pages, source files, and operation l
 npx add-skill Astro-Han/karpathy-llm-wiki
 ```
 
-This install path works with tools that support the [Agent Skills](https://agentskills.io) standard.
+Works with any tool that supports the [Agent Skills](https://agentskills.io) standard.
 
 ## Quick Start
 
@@ -90,22 +75,11 @@ The skill searches the wiki and answers with citations linking back to your mark
 
 > "Lint my wiki"
 
-The skill checks for broken links, missing index entries, stale cross-references, and related consistency issues.
+Checks for broken links, missing index entries, stale cross-references, and related issues.
 
-## Who This Skill Is For
+## How the Workflow Works
 
-This project is designed for people who:
-
-- want to try Karpathy's LLM Wiki idea without building a custom system first
-- want a **personal knowledge base** powered by Claude Code, Cursor, Codex, or similar tools
-- prefer a **markdown-first workflow** over a hosted vector database
-- want an **Agent Skills** package they can install and reuse across coding tools
-
-## How the Karpathy-Style Workflow Works
-
-Karpathy's core idea is that the LLM should maintain the wiki while the human focuses on choosing sources and asking good questions.
-
-This skill follows that model with a simple file layout:
+The core idea from Karpathy: the LLM maintains the wiki while the human focuses on choosing sources and asking good questions.
 
 ```text
 your-project/
@@ -119,11 +93,11 @@ your-project/
 │   └── log.md      ← Append-only operation log
 ```
 
-Each new source can update multiple pages, strengthen cross-references, and record contradictions or revisions. That is what makes the wiki compound over time.
+Each new source can update multiple pages, strengthen cross-references, and record contradictions. That is what makes the wiki compound over time.
 
 ## Tool Compatibility
 
-This skill follows the [agentskills.io](https://agentskills.io) open standard and works with any LLM coding tool that supports `SKILL.md`:
+This skill follows the [agentskills.io](https://agentskills.io) open standard:
 
 | Tool | Install method |
 |------|----------------|
@@ -137,29 +111,21 @@ This skill follows the [agentskills.io](https://agentskills.io) open standard an
 
 ### What is the difference between an LLM wiki and a personal wiki?
 
-An LLM wiki is maintained by the model. The LLM updates summaries, cross-links, index entries, and contradictions as new material arrives. A normal personal wiki usually depends on manual editing.
-
-### How is this different from RAG?
-
-RAG retrieves raw chunks at query time. An LLM wiki compiles source material into durable pages first, then answers from those pages. That makes it easier to maintain evolving summaries, topic pages, and explicit cross-references.
-
-### Which tools are compatible?
-
-Claude Code, Cursor, Codex CLI, OpenCode, and other tools that support the Agent Skills `SKILL.md` standard.
+An LLM wiki is maintained by the model. It updates summaries, cross-links, index entries, and contradictions as new material arrives. A normal personal wiki depends on manual editing.
 
 ### What sources can I ingest?
 
-Web pages, papers, blog posts, PDFs, markdown files, text files, and pasted text. The skill converts source material into markdown under `raw/` and compiles it into `wiki/`.
+Web pages, papers, blog posts, PDFs, markdown files, text files, and pasted text. The skill converts everything into markdown under `raw/` and compiles it into `wiki/`.
 
 ### Is this production-ready?
 
-The workflow in this repo is based on a real knowledge base with 94 articles and 99 sources that has been maintained daily since April 2026. The repo also includes examples, templates, and a documented design spec.
+The workflow is based on a real knowledge base with 94 articles and 99 sources maintained daily since April 2026. The repo includes examples, templates, and a design spec.
 
 ## Inspired By
 
-This is an unofficial community implementation of the workflow described in [Karpathy's LLM Wiki idea file](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). The value of this repository is the reusable workflow, prompt structure, and battle-tested knowledge-compilation rules.
+Unofficial community implementation of the workflow from [Karpathy's LLM Wiki idea](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). The value here is the reusable workflow, prompt structure, and battle-tested knowledge-compilation rules.
 
-Alternative implementations include [lucasastorian/llmwiki](https://github.com/lucasastorian/llmwiki) and [atomicmemory/llm-wiki-compiler](https://github.com/atomicmemory/llm-wiki-compiler).
+See also: [lucasastorian/llmwiki](https://github.com/lucasastorian/llmwiki), [atomicmemory/llm-wiki-compiler](https://github.com/atomicmemory/llm-wiki-compiler).
 
 ## License
 
